@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+
+class Post extends Model
+{
+    use HasFactory, Sluggable;
+
+    // protected $fillable = ['title','excerpt','body'];
+    protected $guarded = ['id'];
+    protected $with = ['user', 'category'];
+
+    public function Category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('excerpt', 'like', '%' . $search . '%');
+            });
+        });
+
+        $query->when($filters['category'] ?? false, function ($query, $category) {
+            return  $query->whereHas('category', function ($query) use ($category) {
+                $query->where('slug', $category);
+            });
+        });
+
+        $query->when($filters['author'] ?? false, function ($query, $author) {
+            return  $query->whereHas('user', function ($query) use ($author) {
+                $query->where('username', $author);
+            });
+        });
+    }
+
+    //merubah otomatis key pada Model Resource
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+}

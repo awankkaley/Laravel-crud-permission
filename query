@@ -1,0 +1,17 @@
+
+Post::create(
+    [
+        'title' => 'Judul Ketiga',
+        'category_id' => 3,
+        'excerpt' => 'Ea labore exercitation quis occaecat duis velit. Adipisicing duis duis sit id incididunt nostrud et nisi pariatur mollit incididunt. Elit id ullamco consectetur ut sit ipsum eu ex ea sunt ad Lorem anim. Non amet elit est laboris esse aliqua velit veniam sint.',
+        'body' => 'Labore ipsum sint irure id nulla occaecat esse non ipsum duis veniam. Ea et proident duis reprehenderit Lorem veniam culpa ullamco laboris esse dolor dolore deserunt voluptate. Esse culpa quis officia sint commodo et aliquip nostrud sint. Duis Lorem incididunt velit sit est exercitation magna ex. Sit ut cupidatat incididunt incididunt magna ea ea in exercitation cupidatat cillum. Magna dolore labore enim pariatur sit. Consectetur aliquip dolore cupidatat magna ullamco mollit ea laborum proident veniam nostrud nisi fugiat. Culpa dolore adipisicing commodo pariatur culpa eu deserunt. Lorem velit occaecat veniam elit dolore consequat minim incididunt elit duis. Adipisicing culpa Lorem sit esse excepteur ut dolor ipsum fugiat proident minim ad in. Nulla quis occaecat sunt mollit officia ullamco. Duis nulla aliquip velit aliquip ex laborum.',
+        'slug' => 'Judul-ketiga'
+    ]
+)
+
+Category::create(
+    [
+        'name' => 'Personal',
+        'slug' => 'personal',
+    ]
+)
